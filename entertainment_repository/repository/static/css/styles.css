@@ -1,0 +1,118 @@
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    height: 100%;
+    width:100%;
+    /* min-height: 100%; */
+    margin: 0px;
+    /* overflow: hidden; */
+    /* padding-bottom: 20px; */
+    padding:0px;
+    overflow-x: hidden; 
+  }
+
+  div.container{
+    height:100%;
+    position: relative;
+    top:0px;
+    margin-bottom: 0px;
+    margin-left:0px;
+    margin-right: 0px;
+    padding:0;
+    width: 100%;
+    max-width: 100%;
+    background-color: #dedef0;
+    
+}
+
+div.container div.itemnavigations{
+    background-color: #cccccc;
+    position:relative;
+    margin:auto;
+    top:2%;
+    width:80%;
+    height:80%;
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+div.itemcard{
+    position:relative;
+    /* margin:  auto; */
+    /* padding:20px */
+    /* position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%); */
+padding:30px;
+top: 10%;
+}
+
+div.itemcard div.itemnme{
+    margin-bottom:120px;
+    margin-right: 120px;
+    margin-top:30px;
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    background-color: #537d91;
+
+    /* padding:30px */
+}
+
+div.itemnavigations ul.itemnavs li.navtabs{
+     
+    /* border-width: 0.5px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 2%; */
+    margin:22px
+}
+
+div.itemnavigations ul.itemnavs a.itemnavlinks{
+    color: #465881;
+    background-color: #d4d7dd;
+    /* border-width: 1120px; */
+    /* border: 112px; */
+    /* border-color: black; */
+}
+
+div.itemnavigations ul.itemnavs a.active{
+    background-color: #222831;
+}
+
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-24 { font-size: 36px; }
+
+div.custom-scrollbar{
+    position: relative;
+    height: 430px;
+    overflow: auto;
+  }
+
+  /* div.modal{
+      /* width:90% 
+  }*/
+
+   .modal-body {
+    overflow-x: auto;
+  }
+
+  /*div.modal div.modal-dialog{
+      width:130%;
+      background-color: black;
+      position: relative;
+  } */
+
+  /* @media (min-width: 1200px) {
+    .modal-xl {
+       width: 90%; 
+    }
+ }
+
+ .modal-xl {
+    width: 750px;
+    margin: auto;
+    padding:0
+  } */

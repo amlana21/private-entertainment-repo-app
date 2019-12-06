@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href="{% static 'css/styles.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>        
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>            
+
+                    <div class='container'>
+                            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                                    <form class="form-inline" action="/searchitems/" method="POST" id='srchFrm' onkeyup="document.getElementById('srchFrm').submit();document.getElementById('srchVal').focus">
+                                      {% csrf_token %}
+                                        <input class="form-control mr-sm-2" name='srchTxt' type="text" placeholder="Search" id='srchVal' value='{{srchvlues}}'>
+                                        <button class="btn btn-secondary" type="submit">Search</button>
+                                      </form>
+                                    <!-- Links -->
+                                      <ul class="navbar-nav ml-auto">
+                                          <li class="nav-item">
+                                              <a class="nav-link" href='/indexpage/'><i class='material-icons' id='homebutton'>
+                                                  home
+                                              </i></a>
+                                          </li>
+                                          
+                                          <li class="nav-item">
+                                              <div data-toggle="modal" data-target="#addmodal">
+                                                <a class="nav-link" href='#'><i class='material-icons' id='addbutton'>
+                                                        post_add
+                                                    </i></a>
+                                                  </div>
+                                            </li>
+                                            <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/logout_view/">Logout</a>
+                                          </li>
+                                      </ul>
+                                    
+                                    
+                                    </nav>
+                                    <div class='itemnavigations'>
+                                        <!-- Nav pills -->
+                                        <ul class="nav nav-pills nav-justified itemnavs">
+                                                
+                                                {% for itm in itemtypesqry %}
+
+                                                
+                                                
+                                                <li class="nav-item navtabs">
+                                                        <a class="nav-link itemnavlinks" data-toggle="pill" href="#{{itm.typename}}">{{itm.typename}}</a>
+                                                </li>
+                                                
+
+
+                                                {% endfor %}
+                                        </ul>
+                                         <!-- Tab panes -->
+                                         <div class="tab-content">
+                                           
+                                            {% for itm in itemtypesqry %}
+                                            <div class="tab-pane container fade tabcntnt custom-scrollbar" id="{{itm.typename}}">
+                                                <table class='table table-hover rslttbl' id="table-{{itm.typename}}">
+                                                    <thead class='thead-dark'>
+                                                      <tr>
+                                                        <th>Name</th>
+                                                        <th>Source</th>
+                                                        <th>Lists</th>
+                                                        <th>Type</th>
+                                                        <th>Price</th>
+                                                        <th>Resell Price</th>
+                                                        <th>Priority</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for cntnt in itemsqry %}
+                                                        {% if cntnt.typeofoitem|stringformat:"s" == itm.typename|stringformat:"s" %}
+                                                        <tr>
+                                                          <td>{{cntnt.itemname}}</td>
+                                                          <td>
+                                                            {% for v in cntnt.source %}
+                                                              {{v}} </br>
+                                                            {% endfor %}
+                                                            
+                                                          </td>
+                                                          <td>
+                                                              {% for v in cntnt.listadded %}
+                                                                {{v}} </br>
+                                                              {% endfor %}
+                                                              
+                                                            </td>
+                                                          
+                                                          <td>{{cntnt.typeofoitem}}</td>
+                                                          <td>{{cntnt.price}}</td>
+                                                          <td>{{cntnt.resellprice}}</td>
+                                                          <td>{{cntnt.priority}}</td>
+                                                        </tr>
+                                                        
+                                                        
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        
+                                                    </tbody>
+                                                  </table>
+
+                                              
+                                            </div>
+
+                                            {% endfor %}
+                                         
+                                        </div>
+                                    </div>
+                                                
+                                    {% include 'results.html' %}
+                                    
+                                    </div>
+
+
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                    </div>
+                    <!--pop up for create-->
+                    <div class="modal" id="addmodal">
+                        <div class="modal-dialog modal-xl modal-dialog-centered" style="width:111250px;">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title">Create</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form class="form-inline"  action="/additems/" method="POST">
+                                  {% csrf_token %}
+                                    <div class="form-group">
+                                    <table class='table' id='cartitemtbl'>
+                                        <thead class="thead-dark">
+                                            <tr>
+                                            <th>Name</th>
+                                            <th>Source</th>
+                                            <th>Lists</th>
+                                            <th>Category</th>
+                                            <th>Price</th>
+                                            <th>Resell Price</th>
+                                            <th>Importance</th>                            
+                                            </tr>
+                                          </thead>
+                                      
+                                      <tbody class='addlinesbody'>
+                                        {% include 'additem.html' %}
+                                      </tbody>
+                                      
+                                    </table>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark" id='sbmtOrdr'>Create</button>
+                                  </form>
+                            </div>
+                    <script type='text/javascript' src="{% static 'js/app.js' %}"></script>
+    </body>
+</html>

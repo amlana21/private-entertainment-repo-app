@@ -1,0 +1,5 @@
+p4env/*
+*.DS_Store
+*.pyc
+__pycache__
+.vscode/*

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href="{% static 'css/login.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body class='bg-dark'>
+            <div class="wrapper fadeInDown">
+                    <div id="formContent" class='mainform'>
+                            <form class="form" method="post">
+                                    {% csrf_token %}
+                                    {% for field in form %}
+                                    <div class="form-group">
+                                        <label><strong>{{ field.label_tag }}</strong></label>{{ field }}
+                                        <!-- <input type="email" class="form-control" id="email"> -->
+                                        
+                                        <p>
+                                        
+                                            {% if field.help_text %}
+                                              <!-- <small style="color: grey">{{ field.help_text }}</small> -->
+                                            {% endif %}
+                                            {% for error in field.errors %}
+                                              <p style="color: red">{{ error }}</p>
+                                            {% endfor %}
+                                          </p>
+                                      </div>
+                                      
+                                    {% endfor %}
+                                    <button type="submit" class='bg-dark'>Login</button>
+                                  </form>
+                        </div>
+                </div>
+    </body>
+</html>
+
+<!-- <h2>Sign up</h2> -->
+
+
+
+  
+
+
+
+

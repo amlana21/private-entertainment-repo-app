@@ -1,0 +1,38 @@
+<tr>
+    <td><input type="text" class="form-control"  name='itmnme' id="itmnme"></td>
+    <td><select multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm " class="selectpicker w-100 form-control" name='srcnme' id="srcnme">
+
+          {% for src in srctype %}
+                <option value="{{src}}">{{src}}</option>                  
+          {% endfor %}
+        </select></td>
+
+        <td><select multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm " class="selectpicker w-100 form-control" name='lstnme' id="lstnme">
+ 
+              {% for lst in listsqry %}
+                    <option value="{{lst}}">{{lst}}</option>                  
+              {% endfor %}
+            </select></td>
+
+        <td>
+            <select class="form-control" name='Category' id='Category'>
+                    {% for itm in itemtypesqry %}
+                    <option value="{{itm.typename}}">{{itm.typename}}</option>                  
+              {% endfor %}
+
+            </select>
+        </td>
+        <td><input type="text" class="form-control"  name='prce' id="prce"></td>
+        <td><input type="text" class="form-control"  name='rsllprce' id="rsllprce"></td>
+        <td>
+                <select class="form-control" name='itmprrty' id='itmprrty'>
+                        {% for itm in itemsorig %}
+                        {% for k,v in itm.items %}
+                        <option value="{{v}}">{{k}}</option>                  
+                        {% endfor %}
+                        {% endfor %}
+    
+                </select>
+            </td>
+    
+</tr>
